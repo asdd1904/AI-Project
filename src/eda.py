@@ -3,9 +3,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
 
-DATA_PATH = Path("data/DatasetCredit-g.csv") 
+DATA_PATH = Path("data/DatasetCredit-g.csv")
 RESULTS_DIR = Path("results")
 RESULTS_DIR.mkdir(exist_ok=True)
+
 
 def main():
     df = pd.read_csv(DATA_PATH)
@@ -20,11 +21,10 @@ def main():
     print(df.describe())
 
     print("\n Estatisticas categoricas")
-    print(df.describe(include='object'))
+    print(df.describe(include="object"))
 
     print("\n Missing values por coluna")
     print(df.isnull().sum())
-
 
     if "class" in df.columns:
         class_dist = df["class"].value_counts(normalize=True) * 100
@@ -36,7 +36,6 @@ def main():
         plt.title("Distribuicao do target (class)")
         plt.savefig(RESULTS_DIR / "class_distribution.png")
         plt.close()
-
 
     if "credit_amount" in df.columns:
         print("\n Estatisticas do credito")
@@ -70,6 +69,7 @@ def main():
         invalid_dep = df[df["num_dependents"] < 0]
         if not invalid_dep.empty:
             print(f"\nDependentes invalidos (<0): {len(invalid_dep)} casos")
+
 
 if __name__ == "__main__":
     main()
