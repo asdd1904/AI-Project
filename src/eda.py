@@ -32,7 +32,8 @@ def main():
         print(class_dist)
 
         plt.figure(figsize=(5, 4))
-        sns.countplot(x="class", data=df, order=df["class"].value_counts().index)
+        sns.countplot(x="class", data=df, order=df["class"].value_counts()
+                      .index)
         plt.title("Distribuicao do target (class)")
         plt.savefig(RESULTS_DIR / "class_distribution.png")
         plt.close()
