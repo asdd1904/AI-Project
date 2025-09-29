@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "cells": [
+    {
+      "type": "cs",
+      "input": ""
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"df_regression_v2.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame"
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame \"df_regression_v2.hex\", [0.8], [\"frame_0.80\",\"frame_0.20\"], 42"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"frame_0.20\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel \"drf\""
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"drf_regression_v2\""
+    },
+    {
+      "type": "cs",
+      "input": "predict"
+    },
+    {
+      "type": "cs",
+      "input": "predict model: \"drf_regression_v2\", frame: \"frame_0.20\", predictions_frame: \"pred_regression_v2\""
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"pred_regression_v2\""
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"frame_0.20\""
+    }
+  ]
+}

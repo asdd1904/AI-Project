@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "cells": [
+    {
+      "type": "cs",
+      "input": "assist"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"DatasetCredit-g-feats.csv\"]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"DatasetCredit-g-feats.csv\"]\n  destination_frame: \"df.hex\"\n  parse_type: \"CSV\"\n  separator: 44\n  number_columns: 26\n  single_quotes: false\n  column_names: [\"class\",\"checking_status\",\"duration\",\"credit_history\",\"purpose\",\"credit_amount\",\"savings_status\",\"employment\",\"installment_commitment\",\"personal_status\",\"other_parties\",\"residence_since\",\"property_magnitude\",\"age\",\"other_payment_plans\",\"housing\",\"existing_credits\",\"job\",\"num_dependents\",\"own_telephone\",\"foreign_worker\",\"credit_per_month\",\"age_bin\",\"duration_bin\",\"is_rent\",\"credit_per_age\"]\n  column_types: [\"Numeric\",\"Enum\",\"Numeric\",\"Enum\",\"Enum\",\"Numeric\",\"Enum\",\"Enum\",\"Numeric\",\"Enum\",\"Enum\",\"Numeric\",\"Enum\",\"Numeric\",\"Enum\",\"Enum\",\"Numeric\",\"Enum\",\"Numeric\",\"Enum\",\"Enum\",\"Numeric\",\"Enum\",\"Enum\",\"Numeric\",\"Numeric\"]\n  delete_on_done: true\n  check_header: 1\n  chunk_size: 4194304\n  escapechar: undefined"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"df.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame"
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame \"df.hex\", [0.8], [\"df.hex_0.80\",\"df.hex_0.20\"], 42"
+    },
+    {
+      "type": "cs",
+      "input": "buildModel \"drf\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'drf', {\"model_id\":\"drf_teste\",\"training_frame\":\"df.hex_0.80\",\"validation_frame\":\"df.hex_0.20\",\"nfolds\":5,\"response_column\":\"class\",\"ignored_columns\":[\"class\"],\"ignore_const_cols\":true,\"ntrees\":800,\"max_depth\":20,\"min_rows\":2,\"nbins\":20,\"seed\":42,\"mtries\":-1,\"sample_rate\":0.632,\"score_each_iteration\":false,\"score_tree_interval\":0,\"fold_assignment\":\"Stratified\",\"balance_classes\":false,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"OneHotExplicit\",\"distribution\":\"AUTO\",\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"keep_cross_validation_models\":true,\"keep_cross_validation_predictions\":true,\"keep_cross_validation_fold_assignment\":false,\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"binomial_double_trees\":false,\"col_sample_rate_change_per_level\":1,\"calibrate_model\":true,\"calibration_frame\":\"df.hex_0.20\",\"calibration_method\":\"PlattScaling\",\"check_constant_response\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"drf_teste\""
+    },
+    {
+      "type": "cs",
+      "input": "predict"
+    },
+    {
+      "type": "cs",
+      "input": "predict model: \"drf_teste\", frame: \"df.hex_0.20\", predictions_frame: \"predict\""
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"predict\""
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"df.hex_0.20\""
+    }
+  ]
+}
