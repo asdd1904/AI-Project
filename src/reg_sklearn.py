@@ -1,11 +1,3 @@
-# src/reg_rf_sklearn_clean_mlflow.py
-# Random Forest (sklearn) — regressão minimal:
-# - feature engineering (make_features)
-# - CV (cv_regression) compara alvo raw vs log1p -> escolhe o melhor
-# - Refit final + TEST
-# - MLflow (params + métricas essenciais)
-# - Output único no terminal
-
 from __future__ import annotations
 import numpy as np
 from sklearn.model_selection import train_test_split

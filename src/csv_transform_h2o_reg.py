@@ -27,6 +27,6 @@ df_out.to_csv(out_path, index=False)
 print(f"OK -> {out_path}")
 print(f"Linhas: {len(df_out)} | Features (excl. targets/class): {df_out.shape[1]-3}")
 if leak_cols:
-    print(f"(Leakage removido: {leak_cols})")
+    print(f"(Leakage removido {leak_cols})")
 else:
     print("(Sem leakage a remover)")
